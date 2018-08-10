@@ -8,8 +8,8 @@ loader.define(function(require,exports,module) {
     // $("#locationLink").on("click",function () {
     //     router.load({url:"pages/enterLocation/enterLocation.html"});
     // })
-    router.$("#mainLink").on("click",function () {
-        router.load({url:"pages/main/main.html"});
+    router.$("#locationLink").on("click",function () {
+        router.load({url:"pages/enterLocation/enterLocation.html"});
     })
 
     return {};

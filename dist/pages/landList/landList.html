@@ -1,0 +1,40 @@
+<div class="bui-page" id="land-list">
+    <header class="bui-bar bui-box">
+        <div class="bui-bar-left span3">
+            <div class="bui-btn btn-back"><i class="iconfont icon-back"></i>返回</div>
+        </div>
+        <div class="bui-bar-main"></div>
+        <div class="bui-bar-right span4 bui-box-align-right">
+            <div class="bui-btn" id="loginLink">
+                <span class="iconWrap"><i class="iconfont icon-user"></i></span>
+                <span class="user">管理员</span>
+                <span class="exit"> | 注销</span>
+            </div>
+        </div>
+    </header>
+    <main>
+    <div id="searchbar" class="bui-searchbar bui-box">
+        <div class="span1">
+            <div class="bui-input">
+                <i class="iconfont icon-fangdajing"></i>
+                <input type="search" value="" placeholder="请输入关键字" id="searchBlock"><i class="icon-remove" style="display:none"></i>
+            </div>
+        </div>
+        <div class="btn-search">搜索</div>
+    </div>
+    <div class="contentWrap">
+        <h1 class="container-xy" id="pageTitle"></h1>
+        <div class="enhead bui-fluid container-xy">
+            <i class="iconfont icon-tudi span3"></i>
+            <div class="span4">
+                <div class="sort">土地总数</div>
+                <div class="count"><span id="total">0</span><b class="unit">块</b></div>
+            </div>
+        </div>
+        <ul class="bui-list nav-list" id="enterList">
+        </ul>
+    </div>
+    </main>
+    <footer>
+    </footer>
+</div>

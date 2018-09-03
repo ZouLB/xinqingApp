@@ -5,38 +5,36 @@
         </div>
         <div class="bui-bar-main"></div>
         <div class="bui-bar-right span4 bui-box-align-right">
-            <div class="bui-btn" href="pages/login/login.html">
-            <span class="iconWrap"><i class="iconfont icon-user"></i></span>管理员</div>
+            <div class="bui-btn" id="loginLink">
+                <span class="iconWrap"><i class="iconfont icon-user"></i></span>
+                <span class="user">管理员</span>
+                <span class="exit"> | 注销</span>
+            </div>
         </div>
     </header>
     <main>
+    <div id="searchbar" class="bui-searchbar bui-box">
+        <div class="span1">
+            <div class="bui-input">
+                <i class="iconfont icon-fangdajing"></i>
+                <input type="search" value="" placeholder="请输入关键字" id="searchEnter"><i class="icon-remove" style="display:none"></i>
+            </div>
+        </div>
+        <div class="btn-search">搜索</div>
+    </div>
     <div class="contentWrap">
         
-        <h1 class="container-xy"><i class="iconfont icon-back"></i>规上企业数量</h1>
+
+        <h1 class="container-xy" id="pageTitle"></h1>
         <div class="enhead bui-fluid container-xy">
             <i class="iconfont icon-qiye span3"></i>
             <div class="span4">
-                <div class="sort">企业总数
-                <div class="count"><span>80</span>家</div>
+                <div class="sort">企业总数</div>
+                <div class="count"><span id="total">80</span>家</div>
             </div>
-        </div></div>
-        <ul class="bui-list nav-list">
-            <li class="bui-btn bui-box container-y">
-                <div class="countBg bui-align-center">1</div>
-                <div class="span1 container-y" id="messageLink">广东全宝科技股份有限公司</div>
-                
-                <i class="iconfont icon-dingwei-copy" id="locationLink"></i>
-            </li>
-            <li class="bui-btn bui-box">
-                <div class="countBg bui-align-center">2</div>
-                <div class="span1 container-y">广东全宝科技股份有限公司</div>
-                <i class="iconfont icon-dingwei-copy"></i>
-            </li>
-            <li class="bui-btn bui-box">
-                <div class="countBg bui-align-center">3</div>
-                <div class="span1 container-y">广东全宝科技股份有限公司</div>
-                <i class="iconfont icon-dingwei-copy" id="locationLink"></i>
-            </li>
+        </div>
+        <ul class="bui-list nav-list" id="enterList">
+            
         </ul>
     </div>
     </main>

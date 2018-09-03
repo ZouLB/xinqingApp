@@ -5,19 +5,41 @@
         </div>
         <div class="bui-bar-main"></div>
         <div class="bui-bar-right span4 bui-box-align-right">
-            <div class="bui-btn" href="pages/login/login.html">
-            <span class="iconWrap"><i class="iconfont icon-user"></i></span>管理员</div>
+            <div class="bui-btn" id="loginLink">
+                <span class="iconWrap"><i class="iconfont icon-user"></i></span>
+                <span class="user">管理员</span>
+                <span class="exit"> | 注销</span>
+            </div>
         </div>
     </header>
     <main>
         <div class="contentWrap">
-            <h1 class="container-xy">广东全宝科技股份有限公司</h1>
-            <ul class="tag container-x">
-                <li>高新技术企业</li>
-                <li>技术中心</li>
-            </ul>
-             <div class="boxWrap container-xy bui-fluid">
-                <h3 class="span12"><i class="icon-face"></i>企业近三年产值（万元）</h3>
+            <div class="container-x wrap">
+                <h1 class="container-xy msgTitle bui-text-hide"></h1>
+                <ul class="tag container-x">
+                    <!-- <li>高新技术企业</li>
+                    <li>技术中心</li> -->
+                </ul>
+            </div>
+            <div class="boxWrap bui-fluid">
+                <h3><i class="iconfont icon-area"></i>企业简介</h3>
+                <p class="container-x enterIntro"></p>
+             </div>
+             <div class="boxWrap bui-fluid addEcharts1" >
+                <h3><i class="iconfont icon-jiazhi"></i>企业近三年产值（万元）</h3>
+                <!-- <div id="myEcharts1" style="height:140px;" class="container-x"></div> -->
+             </div>
+             <div class="boxWrap bui-fluid addEcharts2">
+                <h3><i class="iconfont icon-shui"></i>企业近三年税收信息（万元）</h3>
+                <!-- <div id="myEcharts2" style="height:140px;" class="container-x"></div> -->
+             </div>
+             <div class="boxWrap bui-fluid">
+                <h3><i class="iconfont icon-xinxi"></i>企业信息</h3>
+                <p class="container-x enterInfo"></p>
+             </div>
+             <div class="boxWrap bui-fluid">
+                <h3><i class="iconfont icon-phonecircle"></i>地块权属联系人及联系电话</h3>
+                <p class="container-x contactInfo"></p>
              </div>
          </div>
     </main>

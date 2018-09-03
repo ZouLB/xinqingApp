@@ -5,24 +5,35 @@
         </div>
         <div class="bui-bar-main"></div>
         <div class="bui-bar-right span4 bui-box-align-right">
-            <div class="bui-btn" href="pages/login/login.html">
-            <span class="iconWrap"><i class="iconfont icon-user"></i></span>管理员</div>
+            <div class="bui-btn" id="loginLink">
+                <span class="iconWrap"><i class="iconfont icon-user"></i></span>
+                <span class="user">管理员</span>
+                <span class="exit"> | 注销</span>
+            </div>
         </div>
     </header>
     <main>
     <div class="contentWrap">
     
         <div class="container-x wrap">
-            <h1 class="container-xy">广东全宝科技股份有限公司</h1>
+            <h1 class="container-xy msgTitle bui-text-hide"></h1>
             <ul class="tag container-x">
-                <li>高新技术企业</li>
-                <li>技术中心</li>
+                <!-- <li>高新技术企业</li>
+                <li>技术中心</li> -->
             </ul>
         </div>
         
-        <div class="boxWrap bui-fluid">
-            <h3><i class="iconfont icon-area"></i>企业用地信息</h3>
-                <ul>
+        <div class="boxWrap bui-fluid panel" id="panel1">
+            <div class="bui-panel-head">
+                <h3><i class="iconfont icon-area"></i>企业简介
+                <span class="showItem bui-right"><span class="tip">展开</span><i class="iconfont icon-down-copy changeIcon"></i></span></h3>
+            </div>
+            <div class="bui-panel-main">
+                <p class="container-x enterIntro"></p>
+            </div>
+            <!-- <h3><i class="iconfont icon-area"></i>企业简介</h3>
+                <p class="container-x enterIntro"></p> -->
+                <!-- <ul id="areaMessage">
                     <li  class="bui-left bui-align-center">
                         <div class="count"><span>8.86</span>万m</div>
                         <div class="sort">用地面积</div>
@@ -42,18 +53,32 @@
                     <li class="bui-left bui-align-center">
                         <div class="count"><span>286.0953</span>万m</div>
                         <div class="sort">厂房使用情况</div>
-                    </li>
-            </ul>
+                    </li> 
+            </ul>-->
          </div>
-         <div class="boxWrap bui-fluid">
+         <div class="boxWrap bui-fluid addEcharts1">
             <h3><i class="iconfont icon-jiazhi"></i>企业近三年产值（万元）</h3>
-            <canvas id="barChart" class="bui-box" height="130" width="340"> </canvas>
+			<!-- <div id="myEcharts1" style="height:140px;" class="container-x"></div> -->
+         </div>
+         <div class="boxWrap bui-fluid addEcharts2">
+            <h3><i class="iconfont icon-shui"></i>企业近三年税收信息（万元）</h3>
+            <!-- <div id="myEcharts2" style="height:140px;" class="container-x"></div> -->
+         </div>
+         <div class="boxWrap bui-fluid panel" id="panel2">
+            <div class="bui-panel-head">
+                <h3><i class="iconfont icon-xinxi"></i>企业信息
+                <span class="showItem bui-right"><span class="tip">展开</span><i class="iconfont icon-down-copy changeIcon"></i></span></h3>
+            </div>
+            <div class="bui-panel-main">
+                <p class="container-x enterInfo"></p>
+            </div>
+            <!-- <h3><i class="iconfont icon-xinxi"></i>企业信息</h3>
+            <p class="container-x enterInfo"></p> -->
          </div>
          <div class="boxWrap bui-fluid">
-            <h3><i class="iconfont icon-shui"></i>企业近三年税收信息（万元）</h3>
-            <canvas id="my" class="bui-box" height="130" width="340"> </canvas>
+            <h3><i class="iconfont icon-phonecircle"></i>地块权属联系人及联系电话</h3>
+            <p class="container-x contactInfo"></p>
          </div>
-
     </div>
     </main>
     <footer>

@@ -1,11 +1,19 @@
-window.router = bui.router();
+window.router = bui.router({
+    progress:true,
+    firstAnimate: true
+});
 
 bui.on("pageinit",function(){
     // 初始化路由
     router.init({
-        id: "#bui-router"
+        id: "#bui-router",
+        indexModule:{
+            moduleName: "login",
+            template: "pages/login/login.html", 
+            script: "pages/login/login.js"
+        }
     })
-    
+ 
     // 绑定事件
     bind();
 
@@ -20,38 +28,39 @@ bui.on("pageinit",function(){
             bui.back();
         })
     }
+
 })
 
 
 
 //定义多个模块
-// loader.map({
-//     baseUrl: "",
-//     modules: {
-//         "main": {
-//             moduleName: "main",
-//             template: "pages/main/main.html",
-//             script: "pages/main/main.js"
-//         },
-//         "login": {
-//             moduleName: "login",
-//             template: "pages/login/login.html",
-//             script: "pages/login/login.js"
-//         },
-//         "enterprise": {
-//             moduleName: "enterprise",
-//             template: "pages/enterprise/enterprise.html",
-//             script: "pages/enterprise/enterprise.js"
-//         },
-//         "enterMessage": {
-//             moduleName: "enterMessage",
-//             template: "pages/enterMessage/enterMessage.html",
-//             script: "pages/enterMessage/enterMessage.js"
-//         },
-//         "enterLocation": {
-//             moduleName: "enterLocation",
-//             template: "pages/enterLocation/enterLocation.html",
-//             script: "pages/enterLocation/enterLocation.js"
-//         }
-//     }
-// })
+loader.map({
+    baseUrl: "",
+    modules: {
+        // "main": {
+        //     moduleName: "main",
+        //     template: "pages/main/main.html",
+        //     script: "pages/main/main.js"
+        // },
+        "login": {
+            moduleName: "login",
+            template: "pages/login/login.html",
+            script: "pages/login/login.js"
+        },
+        // "enterprise": {
+        //     moduleName: "enterprise",
+        //     template: "pages/enterprise/enterprise.html",
+        //     script: "pages/enterprise/enterprise.js"
+        // },
+        // "enterMessage": {
+        //     moduleName: "enterMessage",
+        //     template: "pages/enterMessage/enterMessage.html",
+        //     script: "pages/enterMessage/enterMessage.js"
+        // },
+        // "enterLocation": {
+        //     moduleName: "enterLocation",
+        //     template: "pages/enterLocation/enterLocation.html",
+        //     script: "pages/enterLocation/enterLocation.js"
+        // }
+    }
+})

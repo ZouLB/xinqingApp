@@ -1,140 +1,233 @@
 loader.define(function(require,exports,module) {
 
-        function goBarChart(canvasId,dataArr){
-            var canvas,ctx;
+        var base = "http://bi.projects.bingosoft.net:8081/xinqing/";
 
-            // 图表属性
-            var cWidth, cHeight, cMargin, cSpace;
-            var originX, originY;
+        //封装POST方法
+        function buiPost(api,params,callBack){
+            bui.ajax({
+                contentType: 'application/json;charset=UTF-8',
+                method: 'POST',
+                url: base+api,
+                data: JSON.stringify(params),
+                async: false
+            }).then(function(res){
+                callBack(res);
+            },function(res,status){
+                console.log(status);
+            })
+        }
+		
+        //接收参数
+        var params = router.getPageParams();
+        
+        var uiStorage = bui.storage();
+        var companyList = uiStorage.get("companyData");
+        var userName = uiStorage.get("userName")[0];
+        var messageList = companyList[0];
+        $('.user').text(userName)
 
-            // 柱状图属性
-            var bMargin, tobalBars, bWidth, maxValue;
-            var totalYNomber;
+        $('.msgTitle').html(messageList.name);
 
-            canvas = document.getElementById(canvasId);
-            if(canvas && canvas.getContext){
-                ctx = canvas.getContext("2d");
-            }
-
-            initChart(); // 图表初始化
-            drawLineLabelMarkers(); // 绘制图表轴、标签和标记
-            drawBarAnimate(); // 绘制柱状图
-
-            // 图表初始化
-            function initChart(){
-                // 图表信息
-                cMargin = 5;//padding
-                cSpace = 35;//与左下角的距离
-                cHeight = canvas.height - cMargin*2 - cSpace;
-                cWidth = canvas.width - cMargin*2 - cSpace;
-                originX = cMargin + cSpace;//起点
-                originY = cMargin + cHeight+18;//y起点+15
-
-                // 柱状图信息
-                bMargin = 40;//柱状间的间隙
-                tobalBars = dataArr.length;//柱状的数量
-                bWidth = parseInt( cWidth/tobalBars - bMargin );//柱形宽度
-                maxValue = 0;
-                for(var i=0; i<dataArr.length; i++){
-                    var barVal = parseInt( dataArr[i][1] );
-                    if( barVal > maxValue ){
-                        maxValue = barVal;
-                    }
-                }
-                if(maxValue>2000){
-                	maxValue = (parseInt(maxValue/1000)+1)*1000;//y轴最大值
-                }else{
-                	maxValue = (parseInt(maxValue/100)+1)*100;
-                }
-                if(maxValue%6==0){
-                	totalYNomber = 6;//y轴的行数
-                }else{
-                	totalYNomber = 7;
-                }
-                
-            }
-
-            // 绘制图表轴、标签和标记
-            function drawLineLabelMarkers(){
-                ctx.translate(0.5,0.5);  // 当只绘制1像素的线的时候，坐标点需要偏移，这样才能画出1像素实线
-                ctx.font = "12px Arial";
-                ctx.lineWidth = 1;
-                
-                drawLine(originX, originY, originX, cMargin+12);// y轴
-                drawLine(originX, originY, originX+cWidth, originY);// x轴
-
-                // 绘制标记
-                drawMarkers();
-                ctx.translate(-0.5,-0.5);  // 还原位置
-            }
-
-            // 画线(x轴，y轴)
-            function drawLine(x, y, X, Y){
-                ctx.beginPath();
-                ctx.strokeStyle="#c6c6c6";
-                ctx.moveTo(x, y);
-                ctx.lineTo(X, Y);
-                ctx.stroke();
-                ctx.closePath();
-            }
-
-            // 绘制标记
-            function drawMarkers(){
-                ctx.strokeStyle = "#E0E0E0";
-                // 绘制 y
-                var oneVal = parseInt(maxValue/totalYNomber);//平均值
-                ctx.textAlign = "right";
-                for(var i=0; i<=totalYNomber; i++){
-                    var markerVal =  i*oneVal;//每行的值
-                    var xMarker = originX-5;//数字的x坐标
-                    var yMarker = parseInt( cHeight*(1-markerVal/maxValue) ) + cMargin;//数字的y坐标
-                    
-                    ctx.fillStyle="#c6c6c6";
-                    ctx.fillText(markerVal, xMarker, yMarker+3+18, cSpace); // 文字
-                }
-                // 绘制 x
-                ctx.textAlign = "center";
-                for(var i=0; i<tobalBars; i++){
-                    var markerVal = dataArr[i][0];//传的值
-                    var xMarker = parseInt( originX+cWidth*(i/tobalBars)+bMargin+bWidth/2 );
-                    var yMarker = originY+15;
-                    ctx.fillStyle="#c6c6c6";
-                    ctx.fillText(markerVal, xMarker-20, yMarker, cSpace); // 文字
-                }
-            };
-
-            //绘制柱形图
-            function drawBarAnimate(mouseMove){
-                for(var i=0; i<tobalBars; i++){
-                    var oneVal = parseInt(maxValue/totalYNomber);//平均值
-                    var barVal = dataArr[i][1];//传的值
-                    var barH = parseInt( cHeight*barVal/maxValue);
-                    var y = originY - barH;
-                    var x = originX + (bWidth+bMargin)*i + bMargin;
-                    drawRect( x-13, y, bWidth-13, barH);  //高度减一避免盖住x轴
-                    ctx.fillText(barVal, x+10, y-3); // 文字
-                }
-            }
-
-            //绘制方块
-            function drawRect( x, y, X, Y ){
-                ctx.beginPath();
-                ctx.rect( x, y, X, Y );
-                ctx.fillStyle = "rgb(0,149,222)";
-                ctx.strokeStyle = "rgb(0,149,222)";
-                ctx.fill();
-                ctx.closePath();
-
-            }
+        if(messageList.gs){
+            $(".tag").append('<li>规上企业</li>')
+        }
+        if(messageList.hightAndNew){
+            $(".tag").append('<li>高新技术企业</li>')
+        }
+        if(messageList.engineeringCenter){
+            $(".tag").append('<li>工程中心</li>')
+        }
+        if(messageList.technologyCenter){
+            $(".tag").append('<li>技术中心</li>')
         }
 
+        
+        if(messageList.synopsis){
+            $(".enterIntro").html(`<span class="container-x">${messageList.synopsis}</span>`)
+        }else{
+            $(".enterIntro").html(`<span class="container-x">暂无企业简介</span>`)
+        }
 
-        goBarChart(
-                'barChart',[['2015年', 5182], ['2016年', 5985], ['2017年', 6427.5]]
-        )
-        goBarChart(
-                'my',[['2015年',1199], ['2016年', 1109], ['2017年', 427.5]]
-        )
+        if(messageList.info){
+            $(".enterInfo").html(`<span class="container-x">${messageList.info}</span>`)
+        }else{
+            $(".enterInfo").html(`<span class="container-x">暂无企业信息</span>`)
+        }
 
+        if(messageList.contactUserName||messageList.contactUserPhone){
+            $(".contactInfo").html(`<i class="iconfont icon-user1 container-x"></i><span>${messageList.contactUserName}</span>&nbsp;<span class="phoneNumber">${messageList.contactUserPhone}</span>`)
+        }
+
+        $('.phoneNumber').on('click',function(){
+            bui.unit.tel(messageList.contactUserPhone);
+        })
+
+
+        //展开和收起
+        var uiAccordion = bui.accordion({
+            id:"#panel1",
+            handle: ".bui-panel-head", 
+            target: ".bui-panel-main"
+        });
+
+        var num1 = 0;
+
+        $('#panel1 .bui-panel-head').on('click',function(){
+            num1++;
+            if(num1%2 == 0){
+                $("#panel1 .showItem span").html("展开");
+                $('#panel1 .showItem i').removeClass('icon-up').addClass('icon-down-copy');
+            }else{
+                $("#panel1 .showItem span").html("收起");
+                $('#panel1 .showItem i').removeClass('icon-down-copy').addClass('icon-up');
+            }
+        })
+
+        var uiAccordion = bui.accordion({
+            id:"#panel2",
+            handle: ".bui-panel-head", 
+            target: ".bui-panel-main"
+        });
+
+        var num2 = 0;
+ 
+        $('#panel2 .bui-panel-head').on('click',function(){
+            num2++;
+            if(num2%2 == 0){
+                $("#panel2 .showItem span").html("展开");
+                $('#panel2 .showItem i').removeClass('icon-up').addClass('icon-down-copy');
+            }else{
+                $("#panel2 .showItem span").html("收起");
+                $('#panel2 .showItem i').removeClass('icon-down-copy').addClass('icon-up');
+            }
+        })
+
+
+        // var enterpriseLand =[];
+        // buiPost("company/getBlockByCid",{cId:messageList.cId},function(res){
+        //      enterpriseLand = res.resultValue;
+        // })
+
+        // var listTpl =`    <li  class="bui-left bui-align-center">
+        //         <div class="count"><span>${enterpriseLand.landOverview}</span>万㎡</div>
+        //         <div class="sort">用地面积</div>
+        //     </li>
+        //     <li class="bui-left bui-align-center">
+        //         <div class="count"><span>${enterpriseLand.planArea}</span>万㎡</div>
+        //         <div class="sort">规划总建筑面积</div>
+        //     </li>
+        //     <li class="container-xy bui-left bui-align-center">
+        //         <div class="count"><span>${enterpriseLand.plotRatio}</span></div>
+        //         <div class="sort">规划容积率</div>
+        //     </li>
+        //     <li class="bui-left bui-align-center">
+        //         <div class="count"><span>${enterpriseLand.builtArea}</span>万㎡</div>
+        //         <div class="sort">已建筑面积</div>
+        //     </li>
+        //     <li class="bui-left bui-align-center">
+        //         <div class="count"><span>${enterpriseLand.rentArea}</span>万㎡</div>
+        //         <div class="sort">厂房使用情况</div>
+        //     </li>`
+
+        // $("#areaMessage").html(listTpl);
+
+        //柱形图
+        var yearArr=[];
+        var valueArr=[];
+        var taxArr=[];
+        buiPost("taxValue/selectByType",{type: "company",typeId: messageList.cId},function(res){
+            res.resultValue.forEach(function(el){
+                yearArr.unshift(el.year);
+                valueArr.unshift(el.value);
+                taxArr.unshift(el.tax);
+            })
+        })
+
+        function echart(name,id,xArr,yArr){
+            var name = echarts.init(document.getElementById(id));
+
+            var data = xArr;
+            option = {
+                color: ['rgb(0,149,222)'],
+                grid: {
+                    left: '2%',
+                    right: '4%',
+                    bottom: '10%',
+                    top:'20%',
+                    containLabel: true
+                },
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : yArr,
+                        axisLine:{
+                            lineStyle:{
+                                color:'#999',
+                            }
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#999'
+                            }
+                        },
+                        axisTick:{
+                            show:false
+                        }
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value',
+                        axisLine:{
+                            lineStyle:{
+                                color:'#999',
+                            }
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#999'
+                            }
+                        },
+                        axisTick:{       
+                          "show":false
+                        },
+                        scale: true,
+                        splitLine:{
+                            show:false
+                        }
+                    }
+                ],
+                series : [
+                    {
+                        type:'bar',
+                        barWidth: '50%',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        data:data
+                    }
+                ]
+            };
+
+             name.setOption(option);
+        }
+		
+        if(yearArr.length>0){
+            $('.addEcharts1').append('<div id="myEcharts1" style="height:140px;" class="container-x"></div>')
+            $('.addEcharts2').append('<div id="myEcharts2" style="height:140px;" class="container-x"></div>')
+            echart('myCharts1','myEcharts1',valueArr,yearArr);
+            echart('myCharts2','myEcharts2',taxArr,yearArr);
+        }
+
+        //页面跳转
+        router.$("#loginLink").on("click",function () {
+            router.back({
+              name: "login"
+            });
+        })
+        
     return {};
 })

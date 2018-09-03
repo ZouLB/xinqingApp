@@ -5,27 +5,30 @@
         </div>
         <div class="bui-bar-main"></div>
         <div class="bui-bar-right span4 bui-box-align-right">
-            <div class="bui-btn" href="pages/login/login.html">
-            <span class="iconWrap"><i class="iconfont icon-user"></i></span>管理员</div>
+            <div class="bui-btn" id="loginLink">
+                <span class="iconWrap"><i class="iconfont icon-user"></i></span>
+                <span class="user">管理员</span>
+                <span class="exit"> | 注销</span>
+            </div>
         </div>
     </header>
-    <main>
+    <main id="getEnScorll">
         <!-- 正文内容 -->
-        <img src="images/map.png" style="width:100%">
-        <div class="contentWrap">
-            <div class="bui-box container-x top" id="plistLink">
+        <div id="localMap" class="containerWrap"></div>
+        <div class="contentWrap enterLoWrap">
+            <!-- <div class="bui-box container-x top" id="plistLink">
                 <i class="iconfont icon-back"></i>
-                <h2>广东全宝科技股份有限公司</h2>
+                <h2 class="msgTitle">广东全宝科技股份有限公司</h2>
             </div>
             <div class="boxWrap bui-fluid">
-                <h3><i class="icon-face"></i>地块概览</h3>
+                <h3><i class="iconfont icon-dikuaiqingkuang"></i>地块概览</h3>
                 <ul>
                     <li class="bui-left bui-align-center">
-                        <div class="count"><span>19153.74</span>m</div>
+                        <div class="count"><span>19153.74</span>㎡</div>
                         <div class="sort">地块概览</div>
                     </li>
                     <li class="bui-left bui-align-center">
-                        <div class="count"><span>286.0953</span>万m</div>
+                        <div class="count"><span>286.0953</span>万㎡</div>
                         <div class="sort">规划总建筑面积</div>
                     </li>
                     <li class="bui-left bui-align-center">
@@ -35,25 +38,25 @@
                 </ul>
             </div>
             <div class="boxWrap bui-fluid">
-                <h3><i class="icon-face"></i>建筑面积</h3>
+                <h3><i class="iconfont icon-area"></i>建筑面积</h3>
                 <ul>
                     <li class="bui-left bui-align-center">
-                        <div class="count"><span>19153.74</span>m</div>
+                        <div class="count"><span>19153.74</span>㎡</div>
                         <div class="sort">已建建筑面积</div>
                     </li>
                 </ul>
             </div>
             <div class="boxWrap bui-fluid">
-                <h3><i class="icon-face"></i>地块内厂房使用情况</h3>
+                <h3><i class="iconfont icon-fenchengbili"></i>地块内厂房使用情况</h3>
                 <ul>
                     <li class="bui-left bui-align-center">
-                        <div class="count"><span>19153.74</span>m</div>
+                        <div class="count"><span>19153.74</span>㎡</div>
                         <div class="sort">待租面积</div>
                     </li>
                 </ul>
             </div>
             <div class="boxWrap bui-fluid">
-                <h3><i class="icon-face"></i>备注</h3>
+                <h3><i class="iconfont icon-beizhu"></i>备注</h3>
                 <ul>
                     <li class="bui-left bui-align-center">
                         <div class="count"><span>否</span></div>
@@ -64,10 +67,9 @@
                         <div class="sort">低效用地</div>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </main>
     <footer>
-        <!-- 底部内容 -->
     </footer>
 </div>

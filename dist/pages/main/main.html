@@ -1,144 +1,25 @@
-<div class="bui-page">
+<div class="bui-page" id="index">
     <header class="bui-bar bui-box">
         <div class="bui-bar-left span3">
-            
         </div>
         <div class="bui-bar-main"></div>
-        <div class="bui-bar-right span4 bui-box-align-right">
-            <div class="bui-btn" href="pages/login/login.html">
-            <span class="iconWrap"><i class="iconfont icon-user"></i></span>管理员</div>
+        <div class="bui-bar-right span4 bui-box-align-right" id="dropdown">
+            <div class="bui-btn" id="loginLink">
+                <span class="iconWrap"><i class="iconfont icon-user"></i></span>
+                <span class="user">管理员</span>
+                <span class="exit"> | 注销</span>
+            </div>
         </div>
     </header>
-    <main>
+    <main id="getMScorll">
         
+        <div id="mapWrap" class="containerWrap"></div>
         <div id="uiSlideTab" class="bui-tab">
-        <div class="bui-tab-main">
-            <ul id="mainContent">
-                <li class="thePark">
-                    
-                        <div id="container"></div>
-                        
-                    
-                    
-                    <div class="contentWrap">
-                        <div class="bui-box container-xy title">
-                            <h2>园区总体情况</h2>
-                        </div>
-
-                    <div class="boxWrap bui-fluid">
-                        <h3><i class="iconfont icon-area"></i>园区面积</h3>
-                        <ul>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>8.86</span>平方公里</div>
-                                <div class="sort">园区总用地面积</div>
-                            </li>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>286.0953</span>万m</div>
-                                <div class="sort">已建筑面积</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="boxWrap bui-fluid">
-                        <h3><i class="iconfont icon-tudi"></i>用地情况</h3>
-                        <ul>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>130</span>块</div>
-                                <div class="sort">用地地块数量</div>
-                            </li>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>1</span>块</div>
-                                <div class="sort">闲置土地</div>
-                            </li>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>8</span>栋</div>
-                                <div class="sort">待租厂房</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="boxWrap bui-fluid">
-                        <h3><i class="iconfont icon-jiazhi"></i>企业产值</h3>
-                        <ul>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>344.96</span>亿元</div>
-                                <div class="sort">园区2017年规上企业产值</div>
-                            </li>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>344.96</span>亿元</div>
-                                <div class="sort">园区2016年规上企业产值</div>
-                            </li>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>344.96</span>亿元</div>
-                                <div class="sort">园区2015年规上企业产值</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="boxWrap bui-fluid">
-                        <h3><i class="iconfont icon-shui"></i>企业税收</h3>
-                        <ul>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>344.96</span>亿元</div>
-                                <div class="sort">园区2017年规上企业税收</div>
-                            </li>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>344.96</span>亿元</div>
-                                <div class="sort">园区2016年规上企业税收</div>
-                            </li>
-                            <li class="bui-left bui-align-center">
-                                <div class="count"><span>344.96</span>亿元</div>
-                                <div class="sort">园区2015年规上企业税收</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="boxWrap bui-fluid">
-                        <h3><i class="iconfont icon-qiye"></i>企业数量</h3>
-                        <ul>
-                            <li id="enterLink" class="bui-left bui-align-center">
-                                <div class="count"><span>80</span>家</div>
-                                <div class="sort">规上企业数量</div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="boxWrap bui-fluid" id="panel">
-                        <div class="bui-panel-head">
-                          <h3><i class="iconfont icon-xinxi"></i>园区产业信息
-                          <span class="showItem bui-right"><span>展开</span><i class="iconfont icon-down-copy"></i></span></h3>
-                        </div>
-                        <div class="bui-panel-main">
-                            <ul>
-                                <li class="info">
-                                    <h4>电子信息产业</h4>
-                                    <p>2017年电子信息产业工业产值236. 36亿元人民币，占规模以上企业工业产值比重69%，规模以上电子信息产业企业39家。</p>
-                                </li>
-                                <li class="info">
-                                    <h4>电子信息产业</h4>
-                                    <p>2017年电子信息产业工业产值236. 36亿元人民币，占规模以上企业工业产值比重69%，规模以上电子信息产业企业39家。</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="boxWrap bui-fluid">
-                        <h3><i class="iconfont icon-qiye"></i>企业数量</h3>
-                        <ul>
-                            <li id="enterLink" class="bui-left bui-align-center">
-                                <div class="count"><span>80</span>家</div>
-                                <div class="sort">规上企业数量</div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    </div>
-                </li>
-                <li>
-                    东区
-                </li>
-                <li>
-                    西区
-                </li>
-            </ul>
+            <div class="bui-tab-main">
+                <ul id="mainContent">
+                </ul>
+            </div>
         </div>
-    </div>
     </main>
     <footer>
         

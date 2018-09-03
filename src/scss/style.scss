@@ -10,19 +10,23 @@
 .boxWrap{
 	border-bottom: 1px solid #eee;
 	li{
-		padding: 0.15rem 0.2rem 0.24rem 0.35rem; 
+		padding: 0 0.2rem 0.24rem 0.32rem; 
 	}
 	h3{
 		display: block;
 		color:#409EFF;
 		text-indent: 0.1rem;
-		margin-top: 0.2rem;
+		margin: 0.2rem 0;
 		i{
 			font-size: 0.26rem;
 			margin-right: 0.1rem;
 			&.icon-tudi{
 				font-size: 0.22rem;
 			}
+		}
+		img{
+			margin-top: -0.05rem;
+			margin-right: 0.1rem;
 		}
 	}
 }
@@ -33,6 +37,9 @@
 	font-size: 0.16rem;
 	span{
 		font-size:0.3rem;
+	}
+	b{
+		font-weight:normal;
 	}
 }
 .sort{
@@ -45,6 +52,10 @@
 .enhead>.iconfont{
 	font-size: 0.6rem;
 	color: #409EFF;
+	&.icon-tudi{
+		font-size: 0.46rem;
+		padding-top:0.2rem;
+	}
 }
 .enhead .count{
 	color: #C6C6C6;
@@ -60,19 +71,24 @@
 	background-color: #409EFF;
 	color: #fff;
 	line-height: 0.25rem;
-	margin-right: 0.1rem
+	margin-right: 0.1rem;
+	font-siza: 0.18rem;
 }
 
-
+.enter-mess .msgTitle{
+	font-size:0.28rem;
+}
 .enter-mess .tag{
-	padding-bottom: 0.35rem;
+	padding-bottom: 0.2rem;
 	li{
 		display: inline-block;
-		padding: 0.02rem 0.1rem;
+		padding: 0.02rem 0.14rem;
 		color: rgb(109,220,182);
 		border:1px solid rgb(109,220,182);
 		border-radius: 0.2rem;
 		margin-right: 0.1rem;
+		margin-bottom:0.1rem;
+		font-size:0.14rem;
 	}
 }
 
@@ -154,15 +170,16 @@ canvas{
 }
 #uiSlideTabNav .icon-home{
 	font-size: 0.36rem;
+	line-height:0.34rem;
 }
 .bui-list .bui-btn .icon-dingwei-copy{
 	font-size: 0.32rem;
 }
 
-#panel .bui-panel-head{
+.panel .bui-panel-head{
 	margin-bottom: 0.2rem;
 }
-#panel .showItem{
+.panel .showItem{
 	color: #b7b7b7;
 }
 
@@ -179,7 +196,7 @@ canvas{
 	vertical-align: middle;
 }
 
-#container{
+.containerWrap{
 	width:100%;
 	height:6.2rem;
 }   
@@ -187,4 +204,63 @@ canvas{
 	display:none;
 }
 
+#locationLink{
+	height:100%;
+	text-align:center;
+	padding:0.2rem 0;
+}
 
+
+#index #uiSlideTab{
+	overflow:auto !important;
+	height:auto !important;
+	.thePark{
+		height:auto !important;
+		.note{
+			padding:0 0.32rem;
+		}
+	}
+}
+
+img.icon{
+	width:0.26rem;
+}
+
+.icon-user1{
+	color:#c6c6c6;
+}
+.login-form .icon-remove{
+	font-size:0.24rem;
+	line-height:0.66rem;
+}
+
+label.BMapLabel{
+	border:none !important;
+}
+
+.bui-nav>[class*=bui-btn]>.span1{
+	padding-top:0.02rem;
+}
+
+.bui-input i{
+	font-size:0.24rem;
+}
+
+.exit{
+	font-size:0.2rem;
+}
+
+#plList [class*=bui-box]>[class^=span], 
+#plList [class*=bui-box]>li,
+#enterList [class*=bui-box]>[class^=span], 
+#enterList [class*=bui-box]>li{
+	white-space:nowrap;
+}
+
+#land-list .countBg{
+	width: 0.3rem;
+	height: 0.28rem;
+	span{
+		font-size:0.16rem;
+	}
+}

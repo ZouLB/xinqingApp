@@ -73,7 +73,7 @@ loader.define(function(require,exports,module) {
         return encrypted;
     };
 
-    var base = "http://bi.projects.bingosoft.net:8081/xinqing/";
+    var base = "http://183.240.149.211:8083/xinqing/";
 
     //封装POST方法
     function buiPost(api,params,callBack){
@@ -122,5 +122,5 @@ loader.define(function(require,exports,module) {
 
     pageview.init();// 初始化
 
-    return {};// 输出模块
+    return {base,buiPost};// 输出模块
 })

@@ -1,21 +1,11 @@
 loader.define(function(require,exports,module) {
     
-    var base = "http://bi.projects.bingosoft.net:8081/xinqing/";
-
-    //封装POST方法
-    function buiPost(api,params,callBack){
-        bui.ajax({
-            contentType: 'application/json;charset=UTF-8',
-            method: 'POST',
-            url: base+api,
-            data: JSON.stringify(params),
-            async: false
-        }).then(function(res){
-            callBack(res);
-        },function(res,status){
-            console.log(status);
-        })
-    }
+    var base='';
+    var buiPost = null;
+    require("login",function(common){
+        base = common.base;
+        buiPost = common.buiPost;
+    })
     
     //接收参数
     var params = router.getPageParams();

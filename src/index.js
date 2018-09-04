@@ -37,30 +37,10 @@ bui.on("pageinit",function(){
 loader.map({
     baseUrl: "",
     modules: {
-        // "main": {
-        //     moduleName: "main",
-        //     template: "pages/main/main.html",
-        //     script: "pages/main/main.js"
-        // },
         "login": {
             moduleName: "login",
             template: "pages/login/login.html",
             script: "pages/login/login.js"
         },
-        // "enterprise": {
-        //     moduleName: "enterprise",
-        //     template: "pages/enterprise/enterprise.html",
-        //     script: "pages/enterprise/enterprise.js"
-        // },
-        // "enterMessage": {
-        //     moduleName: "enterMessage",
-        //     template: "pages/enterMessage/enterMessage.html",
-        //     script: "pages/enterMessage/enterMessage.js"
-        // },
-        // "enterLocation": {
-        //     moduleName: "enterLocation",
-        //     template: "pages/enterLocation/enterLocation.html",
-        //     script: "pages/enterLocation/enterLocation.js"
-        // }
     }
 })

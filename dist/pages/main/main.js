@@ -1,23 +1,13 @@
 loader.define(function(require,exports,module) {
 
     var uiLoading = bui.loading();
-   
-    var base = "http://bi.projects.bingosoft.net:8081/xinqing/";
 
-    //封装POST方法
-    function buiPost(api,params,callBack){
-        bui.ajax({
-            contentType: 'application/json;charset=UTF-8',
-            method: 'POST',
-            url: base+api,
-            data: JSON.stringify(params),
-            async: false
-        }).then(function(res){
-            callBack(res);
-        },function(res,status){
-            console.log(status);
-        })
-    }
+    var base='';
+    var buiPost = null;
+    require("login",function(common){
+        base = common.base;
+        buiPost = common.buiPost;
+    })
 
     //封装GET方法
     function buiGet(api,params,callBack){
@@ -41,22 +31,6 @@ loader.define(function(require,exports,module) {
           name: "login"
         });
     })
-
-    // var uiActionsheet = bui.actionsheet({
-    //   trigger: "#loginLink",
-    //   buttons: [{ name:"退出登录",value:"exit" }],
-    //   callback: function (e,ui) {
-        
-    //     var val = $(e.target).attr("value");
-    //     if(val =="exit"){
-    //         router.back({
-    //           name: "login"
-    //         });
-    //     }else if( val == "cancel"){
-    //         ui.hide();
-    //     }
-    //   }
-    // })
 
     var parkList = [];//总体数据
 
@@ -133,7 +107,7 @@ loader.define(function(require,exports,module) {
     getIndustryInfo("park002",1);//东区
     getIndustryInfo("park003",2);//西区
 
-    console.log(parkList)
+    // console.log(parkList)
     
     //生成列表的模板
     function template (data) {
@@ -611,5 +585,5 @@ loader.define(function(require,exports,module) {
     }
     
     // 输出模块
-    return {}
+    return {initLabelStyle,setLabelDisabled,initLabel,drawMapvPolygonMain}
 })

@@ -2,22 +2,22 @@ loader.define(function(require,exports,module) {
 
     var uiLoading = bui.loading();
 
-    var base = "http://bi.projects.bingosoft.net:8081/xinqing/";
+    var base='';
+    var buiPost = null;
+    var initLabelStyle = null;
+    var setLabelDisabled = null;
+    var initLabel = null;
+    var drawMapvPolygonMain = null;
 
-    //封装POST方法
-    function buiPost(api,params,callBack){
-        bui.ajax({
-            contentType: 'application/json;charset=UTF-8',
-            method: 'POST',
-            url: base+api,
-            data: JSON.stringify(params),
-            async: false
-        }).then(function(res){
-            callBack(res);
-        },function(res,status){
-            console.log(status);
-        })
-    }
+    require(["login","main"],function(common,main){
+        base = common.base;
+        buiPost = common.buiPost;
+
+        initLabelStyle = main.initLabelStyle;
+        setLabelDisabled = main.setLabelDisabled;
+        initLabel = main.initLabel;
+        drawMapvPolygonMain = main.drawMapvPolygonMain;
+    })
     
     //接收参数
     var params = router.getPageParams();
@@ -269,101 +269,101 @@ loader.define(function(require,exports,module) {
 
 
     //label的样式
-    function initLabelStyle(){
-       for(var i=0;i<labels.length;i++){
-          labels[i].setStyle({
-             color: "#000",
-             fontSize : "10px",
-             border:"0px",
-             display :"block",
-             backgroundColor:"#FFF",
-             border :"0px",
-             opacity: "0.7",
-             height : "16px",
-             lineHeight : "16px",
-             fontFamily:"微软雅黑"
-          });
-       }
-    }
+    // function initLabelStyle(){
+    //    for(var i=0;i<labels.length;i++){
+    //       labels[i].setStyle({
+    //          color: "#000",
+    //          fontSize : "10px",
+    //          border:"0px",
+    //          display :"block",
+    //          backgroundColor:"#FFF",
+    //          border :"0px",
+    //          opacity: "0.7",
+    //          height : "16px",
+    //          lineHeight : "16px",
+    //          fontFamily:"微软雅黑"
+    //       });
+    //    }
+    // }
 
-    //隐藏label
-    function setLabelDisabled(){
-       for(var i=0;i<labels.length;i++){
-          labels[i].setStyle({
-             opacity: "0"
-          });
-       }
-     }
+    // //隐藏label
+    // function setLabelDisabled(){
+    //    for(var i=0;i<labels.length;i++){
+    //       labels[i].setStyle({
+    //          opacity: "0"
+    //       });
+    //    }
+    //  }
 
     
-    //绘制label
-    function initLabel(map,res){
-    if(res && res.length>0){
-        for(var i=0;i<res.length;i++){
-           if(res[i].sname && res[i].nbdLng &&　res[i].nbdLat){
-                    var lab = new BMap.Label(res[i].sname, {position:new BMap.Point(res[i].nbdLng,res[i].nbdLat),offset:{width:-25,height:-15}});
-                    initLabelStyle();                
-                    lab.info=res[i];
-                    lab.map=map;
-                    labels.push(lab);
-                    map.addOverlay(lab);
-                }
-            }
-        }
-    } 
+    // //绘制label
+    // function initLabel(map,res){
+    // if(res && res.length>0){
+    //     for(var i=0;i<res.length;i++){
+    //        if(res[i].sname && res[i].nbdLng &&　res[i].nbdLat){
+    //                 var lab = new BMap.Label(res[i].sname, {position:new BMap.Point(res[i].nbdLng,res[i].nbdLat),offset:{width:-25,height:-15}});
+    //                 initLabelStyle();                
+    //                 lab.info=res[i];
+    //                 lab.map=map;
+    //                 labels.push(lab);
+    //                 map.addOverlay(lab);
+    //             }
+    //         }
+    //     }
+    // } 
 
-    //多边形
-    function drawMapvPolygonMain(map, parkList){
-        let geo = [];
-        let locationPoints = parkList[1].locationPoints;
-        if(locationPoints){
-            let p = [];
-            let pStr = locationPoints.split(';');
-            pStr.forEach((lngLat) => {
-                let lngLatArr = lngLat.split(',');
-                p.push(lngLatArr);
-            });
-            geo.push({
-                geometry: {
-                    type: 'Polygon',
-                    coordinates: [p]
-                },
-                strokeStyle: 'rgba(255, 0, 0, 0.8)'
-            });
-        };
-        let lpStr = parkList[2].locationPoints.split("|");
-        lpStr.forEach((locationPoints, inx)=>{
-            if(locationPoints){
-                let strokeStyle = 'rgba(112, 48, 160, 0.8)';
-                if(inx === 1){
-                    strokeStyle = 'rgba(255, 0, 0, 0.8)';
-                }
-                let p = [];
-                let pStr = locationPoints.split(';');
-                pStr.forEach((lngLat) => {
-                    if(lngLat && lngLat.trim()){
-                        let lngLatArr = lngLat.split(',');
-                        p.push(lngLatArr);
-                    }
-                });
-                geo.push({
-                    geometry: {
-                        type: 'Polygon',
-                        coordinates: [p]
-                    },
-                    strokeStyle
-                });
-            };
-        });
-        let geojsonDataSet = new mapv.DataSet(geo);
-        let geojsonOptions = {
-            lineWidth: 1.5,
-            fillStyle: 'rgba(255,255,255,0)',
-            zIndex: 1,
-            draw: 'simple'
-        };
-        let mapvLayer = new mapv.baiduMapLayer(map, geojsonDataSet, geojsonOptions);
-    }
+    // //多边形
+    // function drawMapvPolygonMain(map, parkList){
+    //     let geo = [];
+    //     let locationPoints = parkList[1].locationPoints;
+    //     if(locationPoints){
+    //         let p = [];
+    //         let pStr = locationPoints.split(';');
+    //         pStr.forEach((lngLat) => {
+    //             let lngLatArr = lngLat.split(',');
+    //             p.push(lngLatArr);
+    //         });
+    //         geo.push({
+    //             geometry: {
+    //                 type: 'Polygon',
+    //                 coordinates: [p]
+    //             },
+    //             strokeStyle: 'rgba(255, 0, 0, 0.8)'
+    //         });
+    //     };
+    //     let lpStr = parkList[2].locationPoints.split("|");
+    //     lpStr.forEach((locationPoints, inx)=>{
+    //         if(locationPoints){
+    //             let strokeStyle = 'rgba(112, 48, 160, 0.8)';
+    //             if(inx === 1){
+    //                 strokeStyle = 'rgba(255, 0, 0, 0.8)';
+    //             }
+    //             let p = [];
+    //             let pStr = locationPoints.split(';');
+    //             pStr.forEach((lngLat) => {
+    //                 if(lngLat && lngLat.trim()){
+    //                     let lngLatArr = lngLat.split(',');
+    //                     p.push(lngLatArr);
+    //                 }
+    //             });
+    //             geo.push({
+    //                 geometry: {
+    //                     type: 'Polygon',
+    //                     coordinates: [p]
+    //                 },
+    //                 strokeStyle
+    //             });
+    //         };
+    //     });
+    //     let geojsonDataSet = new mapv.DataSet(geo);
+    //     let geojsonOptions = {
+    //         lineWidth: 1.5,
+    //         fillStyle: 'rgba(255,255,255,0)',
+    //         zIndex: 1,
+    //         draw: 'simple'
+    //     };
+    //     let mapvLayer = new mapv.baiduMapLayer(map, geojsonDataSet, geojsonOptions);
+    // }
 
     //选中地块
     let geoOne = [];
@@ -388,5 +388,6 @@ loader.define(function(require,exports,module) {
         draw: 'simple'
     }
     var currentLayer = new mapv.baiduMapLayer(map, textDataSet, textOptions);
+
     return {};
 })
